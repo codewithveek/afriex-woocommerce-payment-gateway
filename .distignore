@@ -1,0 +1,17 @@
+/.git
+/.github
+/.qodo
+/archs
+/node_modules
+/vendor
+/assets/js/src
+.distignore
+.eslintrc.js
+.gitignore
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpcs.xml.dist
+webpack.config.js
+README.md

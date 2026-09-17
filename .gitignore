@@ -1,0 +1,6 @@
+archs
+node_modules/
+vendor/
+assets/js/build/
+.qodo/
+*.log

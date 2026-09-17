@@ -1,0 +1,17 @@
+{
+	"name": "afriex-gateway-for-woocommerce",
+	"version": "1.0.0",
+	"description": "Accept bank transfer and mobile money payments through Afriex virtual accounts.",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build assets/js/src/afriex-blocks-checkout.js --output-path=assets/js/build",
+		"start": "wp-scripts start assets/js/src/afriex-blocks-checkout.js --output-path=assets/js/build",
+		"lint:js": "wp-scripts lint-js assets/js/src"
+	},
+	"devDependencies": {
+		"@woocommerce/dependency-extraction-webpack-plugin": "^3.0.1",
+		"@wordpress/scripts": "^27.9.0",
+		"typescript": "^5.9.3"
+	}
+}

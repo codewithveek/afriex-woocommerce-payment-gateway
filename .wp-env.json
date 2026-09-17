@@ -1,0 +1,9 @@
+{
+   "core": "https://wordpress.org/wordpress-7.0.zip",
+  "plugins": [".", "https://downloads.wordpress.org/plugin/woocommerce.zip"],
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_DEBUG_DISPLAY": false
+  }
+}

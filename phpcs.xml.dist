@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="Afriex Gateway for WooCommerce">
+	<description>WordPress coding standards for the Afriex WooCommerce gateway.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/assets/js/build/*</exclude-pattern>
+	<exclude-pattern>/archs/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<rule ref="WordPress">
+		<!-- The plugin targets PHP 7.4+, where short array syntax is fine, but
+		     WPCS still prefers long arrays for consistency with WooCommerce
+		     core. Keeping the default. -->
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="afriex-gateway-for-woocommerce"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="afriex"/>
+				<element value="AFRIEX_WC"/>
+				<element value="woocommerce_afriex"/>
+			</property>
+		</properties>
+	</rule>
+
+	<config name="minimum_wp_version" value="6.0"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="PHPCompatibilityWP"/>
+</ruleset>
