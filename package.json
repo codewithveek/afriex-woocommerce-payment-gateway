@@ -7,10 +7,25 @@
 	"scripts": {
 		"build": "wp-scripts build assets/js/src/afriex-blocks-checkout.js --output-path=assets/js/build",
 		"start": "wp-scripts start assets/js/src/afriex-blocks-checkout.js --output-path=assets/js/build",
-		"lint:js": "wp-scripts lint-js assets/js/src"
+		"lint:js": "wp-scripts lint-js assets/js/src",
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:destroy": "wp-env destroy",
+		"env:cli": "wp-env run cli wp",
+		"env:logs": "wp-env logs wordpress",
+		"env:setup": "node tests/tools/setup-env.mjs",
+		"env:activate": "wp-env run cli wp plugin activate woocommerce afriex-woocommerce-payment-gateway",
+		"env:order": "wp-env run cli wp eval-file wp-content/plugins/afriex-woocommerce-payment-gateway/tests/tools/make-order.php",
+		"env:show": "wp-env run cli wp eval-file wp-content/plugins/afriex-woocommerce-payment-gateway/tests/tools/show-order.php",
+		"env:sweep": "wp-env run cli wp eval \"do_action( 'afriex_reconcile_pending_orders' );\"",
+		"env:hpos:on": "wp-env run cli wp wc hpos sync && wp-env run cli wp option update woocommerce_custom_orders_table_enabled yes",
+		"env:hpos:off": "wp-env run cli wp option update woocommerce_custom_orders_table_enabled no",
+		"webhook:keygen": "node tests/tools/webhook.mjs keygen",
+		"webhook:send": "node tests/tools/webhook.mjs send"
 	},
 	"devDependencies": {
 		"@woocommerce/dependency-extraction-webpack-plugin": "^3.0.1",
+		"@wordpress/env": "^11.15.0",
 		"@wordpress/scripts": "^27.9.0",
 		"typescript": "^5.9.3"
 	}

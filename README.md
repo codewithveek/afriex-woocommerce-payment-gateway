@@ -25,6 +25,18 @@ composer install && composer lint    # PHPCS, WordPress coding standards
 
 CI runs both, plus `php -l` across PHP 7.4 through 8.3, and fails if the block bundle does not build.
 
+## Testing
+
+A disposable WordPress + WooCommerce site in Docker, with a locally generated keypair so webhook signatures are verified for real rather than stubbed:
+
+```bash
+npm run env:start      # Docker must be running; first run pulls images
+npm run env:setup      # keypair, seeded store, gateway enabled
+npm run webhook:send -- --payment-method-id pm_test_1 --status COMPLETED --amount 49.99
+```
+
+[tests/README.md](tests/README.md) maps each of the architecture document's nine tests to a command. Nothing under `tests/` ships in the release package.
+
 ## Layout
 
 | Path | Role |

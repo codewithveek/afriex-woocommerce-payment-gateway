@@ -4,3 +4,7 @@ vendor/
 assets/js/build/
 .qodo/
 *.log
+
+# Local test environment keys — never commit these.
+tests/tools/.keys/
+tests/mu-plugins/tunnel-host.txt
