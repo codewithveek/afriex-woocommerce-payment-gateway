@@ -38,7 +38,9 @@ npm run env:destroy                 # wipe and start over
 
 Plugin logs land in WooCommerce → Status → Logs under the `afriex` source. `env:setup` turns logging on.
 
-Every `wp-env run` call takes roughly 45 seconds — that is container startup, not your machine struggling.
+Every `wp-env run` call takes roughly 45 seconds on a Windows-drive checkout — that is container startup over a slow bind mount. From a checkout inside WSL2's own filesystem it is a second or two.
+
+> **Keep WooCommerce first in the `plugins` list in `.wp-env.json`.** wp-env activates plugins in list order, and this plugin's `Requires Plugins: woocommerce` header makes WordPress refuse to activate it before WooCommerce. When that happens wp-env treats the start as failed and **destroys the containers it just created** — you are left with nothing running and no obvious error beyond "Error while running docker compose command".
 
 > The `env:order` and `env:show` scripts hard-code the container path `wp-content/plugins/afriex-woocommerce-payment-gateway/`. wp-env mounts the project under **its folder name**, not the plugin slug, so adjust those two scripts if you rename the checkout directory. `env:setup` derives the path on its own.
 

@@ -1,8 +1,8 @@
 {
 	"core": null,
 	"plugins": [
-		".",
-		"https://downloads.wordpress.org/plugin/woocommerce.zip"
+		"https://downloads.wordpress.org/plugin/woocommerce.zip",
+		"."
 	],
 	"testsEnvironment": false,
 	"mappings": {

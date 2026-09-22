@@ -8,6 +8,8 @@
 /node_modules
 /vendor
 /tests
+/research_notes
+/reports
 .distignore
 .wp-env.json
 .eslintrc.js

@@ -8,3 +8,7 @@ assets/js/build/
 # Local test environment keys — never commit these.
 tests/tools/.keys/
 tests/mu-plugins/tunnel-host.txt
+
+# Internal research and audit output.
+research_notes/
+reports/
