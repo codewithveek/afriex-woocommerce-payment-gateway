@@ -64,21 +64,3 @@ npm run webhook:send -- --payment-method-id pm_test_1 --status COMPLETED --amoun
 **Verification is the permission check.** It runs in the route's `permission_callback`, so a forged request is rejected before any order lookup or write happens.
 
 **Amount mismatches are never auto-completed.** An underpayment silently fulfilled is a loss; an overpayment silently kept is a dispute. Both get a note and a human.
-
-## Open questions for the Afriex team
-
-These are assumptions the code makes that should be confirmed against the live API. Each is isolated so confirming or correcting it touches one place.
-
-1. **Staging base URL.** `Afriex_Api_Client` assumes `https://sandbox.api.afriex.com/api/v1`. The `woocommerce_afriex_api_base_url` filter exists so this can be corrected without patching the plugin.
-2. **Deposit webhook payload shape.** Order lookup matches `data.destinationId` against the stored payment method id, falling back to `paymentMethodId`, then to a reference match for pool collection. If deposit payloads key this differently from disbursements, `Afriex_Webhook_Handler::find_order()` is the place to fix.
-3. **Transaction list filtering.** The sweep calls `GET /transaction?destinationId=…` to find deposits for an order that never received a webhook. If that filter is not supported, the sweep needs a different query.
-4. **Sandbox coverage.** Virtual accounts and pool accounts are documented as production-only. If they cannot be exercised in sandbox, pre-launch testing is materially limited.
-5. **Pool account references.** Pool collection assumes the order number can be used as the reference and echoed back on the deposit. Confirm how Afriex expects a pool reference to be set and returned.
-6. **Refunds.** Deferred until the Afriex refund path is confirmed as API-accessible. A `REFUNDED` status currently adds an order note rather than creating a WooCommerce refund record.
-
-## Roadmap
-
-- **Phase 1** (this release) — dedicated virtual account, classic + block checkout, HPOS, webhook confirmation, reconciliation sweep, amount-mismatch guard.
-- **Phase 2** (this release) — pool account collection.
-- **Phase 3** — order-received and email polish: copy-to-clipboard account number, QR code where the destination bank supports it.
-- **Phase 4** — refunds.
